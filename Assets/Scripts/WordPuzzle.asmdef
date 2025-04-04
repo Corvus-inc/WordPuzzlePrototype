@@ -1,0 +1,18 @@
+{
+    "name": "WordPuzzle",
+    "rootNamespace": "",
+    "references": [
+        "GUID:50920238ccce3014bafe9e5c3a608da5",
+        "GUID:d0d8c5d9b085fdf4e985742eed495b6a",
+        "GUID:3d55f691a6eeecd49b99d5ddc680a23a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
