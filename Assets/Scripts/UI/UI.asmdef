@@ -1,7 +1,7 @@
 {
     "name": "UI",
     "rootNamespace": "",
-    "references": [],
+    "references": ["GUID:d0d8c5d9b085fdf4e985742eed495b6a"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
