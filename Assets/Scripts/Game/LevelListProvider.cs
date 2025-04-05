@@ -13,7 +13,8 @@ namespace Game
         public ReactiveProperty<List<LevelData>> Levels { get; } = new();
         
         private readonly RemoteConfigManager _remoteConfigManager;
-        private readonly string _defaultLevelPath = $"Configs/{CoreConstants.DefaultLevelKey}";
+        
+        private const string DefaultLevelPath = "Configs/defaultLevel";
         
         public LevelListProvider(RemoteConfigManager remoteConfigManager)
         {
@@ -22,10 +23,10 @@ namespace Game
 
         public void LoadInitialLevel()
         {
-            TextAsset levelAsset = Resources.Load<TextAsset>(_defaultLevelPath);
+            TextAsset levelAsset = Resources.Load<TextAsset>(DefaultLevelPath);
             if (levelAsset == null)
             {
-                Debug.LogError($"Default level not found at {_defaultLevelPath}");
+                Debug.LogError($"Default level not found at {DefaultLevelPath}");
                 return;
             }
 
