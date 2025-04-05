@@ -4,7 +4,8 @@
     "references": [
         "GUID:50920238ccce3014bafe9e5c3a608da5",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:30e7a851ec87b44ad956804ca8ebf15c"
+        "GUID:30e7a851ec87b44ad956804ca8ebf15c",
+        "UniRx"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

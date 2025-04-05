@@ -1,49 +1,43 @@
-using Core;
-using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
 {
     public class LevelService
     {
-        private readonly RemoteConfigManager _remoteConfigManager;
+        private List<LevelData> _levels;
+        private int _currentLevelIndex = 0;
 
-        public LevelService(RemoteConfigManager remoteConfigManager)
+        public void SetLevels(List<LevelData> levels)
         {
-            _remoteConfigManager = remoteConfigManager;
+            _levels = levels;
+            _currentLevelIndex = 0;
         }
-
-        public async UniTask<LevelData> LoadLevelAsync(string levelKey)
+        
+        public LevelData GetCurrentLevel()
         {
-            string levelJson = string.Empty;
-            string remoteLevelJson = await _remoteConfigManager.FetchRemoteLevelJsonAsync(levelKey);
-
-            if (!string.IsNullOrEmpty(remoteLevelJson))
+            if (_levels == null || _levels.Count == 0)
             {
-                Debug.Log($"Level {levelKey} loaded from Remote Config.");
-                levelJson = remoteLevelJson;
-            }
-            else
-            {
-                TextAsset levelAsset = Resources.Load<TextAsset>($"Configs/{CoreConstants.DefaultLevelKey}");
-                if (levelAsset == null)
-                {
-                    Debug.LogError($"Default level file not found for key: {CoreConstants.DefaultLevelKey}");
-                    return null;
-                }
-
-                Debug.Log($"Level {CoreConstants.DefaultLevelKey} loaded from default Resources.");
-                levelJson = levelAsset.text;
-            }
-
-            LevelData levelData = JsonUtility.FromJson<LevelData>(levelJson);
-            if (levelData == null)
-            {
-                Debug.LogError($"Failed to deserialize level data for level {levelKey}.");
+                Debug.LogError("No levels loaded.");
                 return null;
             }
+            return _levels[_currentLevelIndex];
+        }
 
-            return levelData;
+        public bool TryAdvanceLevel()
+        {
+            if (_levels != null && _currentLevelIndex < _levels.Count - 1)
+            {
+                _currentLevelIndex++;
+                return true;
+            }
+            Debug.LogWarning("No next level available.");
+            return false;
+        }
+
+        public void ResetProgress()
+        {
+            _currentLevelIndex = 0;
         }
     }
 }
