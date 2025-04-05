@@ -13,13 +13,16 @@ namespace Game
         private readonly LevelService _levelService;
 
         private readonly CompositeDisposable _disposables = new ();
+        private readonly GameFlowController _gameFlowController;
 
         public GameInitializer(
             LevelListProvider levelListProvider,
-            LevelService levelService)
+            LevelService levelService,
+            GameFlowController gameFlowController)
         {
             _levelListProvider = levelListProvider;
             _levelService = levelService;
+            _gameFlowController = gameFlowController;
         }
 
         public void Initialize()
@@ -29,6 +32,8 @@ namespace Game
             _levelListProvider.Levels
                 .Subscribe(OnLevelsUpdated)
                 .AddTo(_disposables); 
+            
+            _gameFlowController.GoToMenu();
             
             FetchRemoteLevels().Forget();
         }
