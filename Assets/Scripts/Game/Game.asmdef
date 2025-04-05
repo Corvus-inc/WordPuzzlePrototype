@@ -5,8 +5,9 @@
         "GUID:50920238ccce3014bafe9e5c3a608da5",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:30e7a851ec87b44ad956804ca8ebf15c",
-        "UniRx"
-    ],
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
+    ], 
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
