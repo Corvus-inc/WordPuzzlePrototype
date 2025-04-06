@@ -9,11 +9,13 @@ public class MainMenuWindow : MonoBehaviour
     [SerializeField] private Button _settingsButton;
 
     private LevelService _levelService;
+    private GameFlowController _gameFlowController;
 
     [Inject]
-    public void Construct(LevelService levelService)
+    public void Construct(LevelService levelService, GameFlowController gameFlowController)
     {
         _levelService = levelService;
+        _gameFlowController = gameFlowController;
     }
 
     private void Start()
@@ -26,6 +28,7 @@ public class MainMenuWindow : MonoBehaviour
     {
         var level = _levelService.GetCurrentLevel();
         Debug.Log($"[MainMenu] Play clicked. Current level ID: {level?.id}");
+        _gameFlowController.StartGame();
     }
 
     private void OnSettingsClicked()
