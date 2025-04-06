@@ -379,6 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiRoot: {fileID: 2000851169}
   mainMenuPrefab: {fileID: 1969583209325343998, guid: 78bf5050636db6d4f97a995beb5e7fd4, type: 3}
+  gameUIPrefab: {fileID: 6141184249494285548, guid: 6543a1792b913b944ad6cc712be4648d, type: 3}
 --- !u!4 &1845347561
 Transform:
   m_ObjectHideFlags: 0
