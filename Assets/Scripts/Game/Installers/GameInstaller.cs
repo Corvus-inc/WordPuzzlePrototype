@@ -1,6 +1,5 @@
 using Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Game.Installers
