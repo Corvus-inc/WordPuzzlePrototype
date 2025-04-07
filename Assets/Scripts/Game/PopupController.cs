@@ -21,8 +21,8 @@ namespace Game
         public async void ShowVictoryPopup()
         {
             const string popupKey = "UI/PopupVictoryWindow";
-           
-            AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(popupKey);
+
+            var handle = Addressables.LoadAssetAsync<GameObject>(popupKey);
             await handle.Task;
 
             if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -33,7 +33,7 @@ namespace Game
             }
             else
             {
-                Debug.LogError($"[PopupController] Failed to load popup: {popupKey}");
+                Debug.LogError($"Failed to load popup: {popupKey}");
             }
         }
 

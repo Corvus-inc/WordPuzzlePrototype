@@ -26,18 +26,41 @@ namespace Game
 
         public bool TryAdvanceLevel()
         {
-            if (_levels != null && _currentLevelIndex < _levels.Count - 1)
+            if (_levels == null || _levels.Count == 0)
+            {
+                Debug.LogWarning("Level list is empty.");
+                return false;
+            }
+
+            if (_currentLevelIndex < _levels.Count - 1)
             {
                 _currentLevelIndex++;
-                return true;
             }
-            Debug.LogWarning("No next level available.");
-            return false;
+            else
+            {
+                // Последний уровень пройден — сбрасываемся на первый
+                Debug.Log("Reached last level, restarting from the beginning.");
+                _currentLevelIndex = 0;
+            }
+
+            return true;
         }
+
 
         public void ResetProgress()
         {
             _currentLevelIndex = 0;
+        }
+
+        public bool MoveToNextLevel()
+        {
+            if (_currentLevelIndex + 1 < _levels.Count)
+            {
+                _currentLevelIndex++;
+                return true;
+            }
+
+            return false;
         }
     }
 }
