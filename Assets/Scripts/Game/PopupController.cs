@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -18,7 +20,7 @@ namespace Game
             _uiCanvas = uiCanvas;
         }
 
-        public async void ShowVictoryPopup()
+        public async void ShowVictoryPopup(List<string> solvedWords)
         {
             const string popupKey = "UI/PopupVictoryWindow";
 
@@ -30,6 +32,15 @@ namespace Game
                 var prefab = handle.Result;
                 var instance = _container.InstantiatePrefab(prefab, _uiCanvas.transform);
                 instance.SetActive(true);
+
+                if (instance.TryGetComponent<IVictoryPopup>(out var victoryPopup))
+                {
+                    victoryPopup.SetWords(solvedWords);
+                }
+                else
+                {
+                    Debug.LogWarning("Victory popup does not implement IVictoryPopup.");
+                }
             }
             else
             {

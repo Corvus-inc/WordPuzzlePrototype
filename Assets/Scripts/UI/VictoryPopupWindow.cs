@@ -1,12 +1,18 @@
+using System.Collections.Generic;
+using Core;
 using Game;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class VictoryPopupWindow : MonoBehaviour
+public class VictoryPopupWindow : MonoBehaviour, IVictoryPopup
 {
-    [SerializeField] private Button _nextButton;
-    [SerializeField] private Button _closeButton;
+    [Header("UI")]
+    [SerializeField] private Transform _wordListContainer;
+    [SerializeField] private TMP_Text _wordItemPrefab;
+    [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Button _nextLevelButton;
 
     private GameFlowController _gameFlowController;
 
@@ -16,20 +22,35 @@ public class VictoryPopupWindow : MonoBehaviour
         _gameFlowController = gameFlowController;
     }
 
+    public void SetWords(List<string> words)
+    {
+        foreach (Transform child in _wordListContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (var word in words)
+        {
+            var wordUI = Instantiate(_wordItemPrefab, _wordListContainer);
+            wordUI.text = word;
+        }
+    }
+
     private void Start()
     {
-        _nextButton.onClick.AddListener(OnNextClicked);
-        _closeButton?.onClick.AddListener(Close);
+        _mainMenuButton.onClick.AddListener(OnMainMenuClicked);
+        _nextLevelButton.onClick.AddListener(OnNextLevelClicked);
     }
 
-    private void OnNextClicked()
+    private void OnMainMenuClicked()
+    {
+        _gameFlowController.GoToMenu();
+        Destroy(gameObject);
+    }
+
+    private void OnNextLevelClicked()
     {
         _gameFlowController.LoadNextLevel();
-        Close();
-    }
-
-    private void Close()
-    {
         Destroy(gameObject);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -33,9 +34,9 @@ namespace Game
             _uiManager.ShowGameUI();
         }
 
-        public void ShowVictory()
+        public void ShowVictory(List<string> solvedWords)
         {
-            _popupController.ShowVictoryPopup();
+            _popupController.ShowVictoryPopup(solvedWords);
         }
 
         public void LoadNextLevel()

@@ -95,7 +95,7 @@ namespace UI
 
         private void OnWinClicked()
         {
-            _gameFlowController.ShowVictory();
+            _gameFlowController.ShowVictory(_level.words);
         }
     }
 }

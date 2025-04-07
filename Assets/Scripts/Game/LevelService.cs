@@ -38,7 +38,6 @@ namespace Game
             }
             else
             {
-                // Последний уровень пройден — сбрасываемся на первый
                 Debug.Log("Reached last level, restarting from the beginning.");
                 _currentLevelIndex = 0;
             }
