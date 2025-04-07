@@ -20,6 +20,10 @@ namespace Game.Installers
             Container.Bind<UIManager>().AsSingle()
                 .WithArguments(uiRoot, mainMenuPrefab, gameUIPrefab, mainBackground);
             
+            Container.Bind<PopupController>()
+                .AsSingle()
+                .WithArguments(uiRoot.GetComponent<Canvas>());
+            
             Container.Bind<GameFlowController>().AsSingle();
             Container.BindInterfacesTo<GameInitializer>().AsSingle();
         }

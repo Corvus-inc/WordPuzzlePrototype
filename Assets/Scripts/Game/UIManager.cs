@@ -16,6 +16,8 @@ namespace Game
 
         private GameObject _mainMenu;
         private GameObject _gameUI;
+        
+        private readonly Sprite _background;
 
         public UIManager(
             DiContainer container,
@@ -31,11 +33,13 @@ namespace Game
             _mainMenuPrefab = mainMenuPrefab;
             _gameUIPrefab = gameUIPrefab;
             _mainBackground = mainBackground;
+            _background = mainBackground.sprite;
         }
 
         public void ShowMainMenu()
         {
             UnloadAll();
+            SetupBackground(_background);
             _mainMenu = _container.InstantiatePrefab(_mainMenuPrefab, _uiRoot);
         }
 

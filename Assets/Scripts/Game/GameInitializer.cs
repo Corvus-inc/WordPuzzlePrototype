@@ -52,12 +52,6 @@ namespace Game
             }
 
             _levelService.SetLevels(newLevels);
-
-            var currentLevel = _levelService.GetCurrentLevel();
-            if (currentLevel != null)
-            {
-                Debug.Log($"GameInitializer: Current level ID = {currentLevel.id}");
-            }
         }
 
         public void Dispose()

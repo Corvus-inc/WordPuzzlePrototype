@@ -10,12 +10,16 @@ public class MainMenuWindow : MonoBehaviour
 
     private LevelService _levelService;
     private GameFlowController _gameFlowController;
+    private PopupController _popupController;
 
     [Inject]
-    public void Construct(LevelService levelService, GameFlowController gameFlowController)
+    public void Construct(LevelService levelService, 
+        GameFlowController gameFlowController,
+        PopupController popupController)
     {
         _levelService = levelService;
         _gameFlowController = gameFlowController;
+        _popupController = popupController;
     }
 
     private void Start()
@@ -33,6 +37,6 @@ public class MainMenuWindow : MonoBehaviour
 
     private void OnSettingsClicked()
     {
-        Debug.Log("[MainMenu] Settings clicked");
+        _popupController.ShowSettingsPopup();
     }
 }
