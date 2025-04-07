@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -21,15 +20,21 @@ namespace UI
         
         
         [Header("Anything")]
-        [SerializeField] private ScrollRect _scrollRect;  
+        [SerializeField] private ScrollRect _scrollRect;
+        [SerializeField] private Button _winButton;
+
 
         private GameFlowController _gameFlowController;
+        private UIManager _uiManager;
         private LevelData _level;
 
         [Inject]
-        public void Construct(GameFlowController gameFlowController, LevelService levelService)
+        public void Construct(GameFlowController gameFlowController,
+            LevelService levelService,
+            UIManager uiManager)
         {
             _gameFlowController = gameFlowController;
+            _uiManager = uiManager;
 
             _level = levelService.GetCurrentLevel();
         }
@@ -43,7 +48,12 @@ namespace UI
             {
                 CreateRows();
                 CreateClusterItems(_level.clusters);
+                
+                var back = Resources.Load<Sprite>($"UI/Background/Back{_level.id}");
+                _uiManager.SetupBackground(back);
             }
+            
+            _winButton.onClick.AddListener(OnWinClicked);
         }
         private void ClearContainer(Transform container)
         {

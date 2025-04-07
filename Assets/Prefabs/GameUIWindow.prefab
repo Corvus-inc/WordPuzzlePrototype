@@ -164,10 +164,10 @@ RectTransform:
   - {fileID: 412895586486457593}
   m_Father: {fileID: 7125458010625768956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 30, y: 236.25}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchorMin: {x: 0.5, y: 0.28100002}
+  m_AnchorMax: {x: 0.5, y: 0.28100002}
+  m_AnchoredPosition: {x: 0, y: -341}
+  m_SizeDelta: {x: 319, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4125099170607736805
 CanvasRenderer:
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.7
+  m_fontSize: 51.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -442,6 +442,7 @@ MonoBehaviour:
   _rowPrefab: {fileID: 3929187986150142730, guid: c906453919e713f47a415892cf4e2e42, type: 3}
   _clusterPrefab: {fileID: 6642010890063158916, guid: 088f4df420fd33b41b334977645fff00, type: 3}
   _scrollRect: {fileID: 5217886585147448415}
+  _winButton: {fileID: 5565775022367831721}
 --- !u!1 &6589875592673940537
 GameObject:
   m_ObjectHideFlags: 0

@@ -554,6 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2522c381424b41eca83dcccbde80ca43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainBackground: {fileID: 1621229121}
   uiRoot: {fileID: 2000851169}
   mainMenuPrefab: {fileID: 1969583209325343998, guid: 78bf5050636db6d4f97a995beb5e7fd4, type: 3}
   gameUIPrefab: {fileID: 6141184249494285548, guid: 6543a1792b913b944ad6cc712be4648d, type: 3}
