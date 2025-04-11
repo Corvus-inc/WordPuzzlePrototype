@@ -46,7 +46,7 @@ namespace Game
 
             try
             {
-                Levels.Value = ParseLevelsBuId(remoteJson);
+                Levels.Value = ParseLevelsById(remoteJson);
                 
                 Debug.Log($"Remote levels loaded: {Levels.Value.Count} levels.");
             }
@@ -56,7 +56,7 @@ namespace Game
             }
         }
 
-        private static List<LevelData> ParseLevelsBuId(IEnumerable<string> allJsonStrings)
+        private static List<LevelData> ParseLevelsById(IEnumerable<string> allJsonStrings)
         {
             var levels = new List<LevelData>();
 

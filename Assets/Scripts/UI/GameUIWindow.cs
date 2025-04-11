@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using Cysharp.Threading.Tasks;
 using Game;
 using UnityEngine;
@@ -25,16 +26,16 @@ namespace UI
 
 
         private GameFlowController _gameFlowController;
-        private UIManager _uiManager;
+        private UIScreenManager _uiScreenManager;
         private LevelData _level;
 
         [Inject]
         public void Construct(GameFlowController gameFlowController,
             LevelService levelService,
-            UIManager uiManager)
+            UIScreenManager uiScreenManager)
         {
             _gameFlowController = gameFlowController;
-            _uiManager = uiManager;
+            _uiScreenManager = uiScreenManager;
 
             _level = levelService.GetCurrentLevel();
         }
@@ -50,7 +51,7 @@ namespace UI
                 CreateClusterItems(_level.clusters);
 
                 var back = Resources.Load<Sprite>($"UI/Background/Back{_level.id}");
-                _uiManager.SetupBackground(back);
+                _uiScreenManager.SetupBackground(back);
             }
 
             _winButton.onClick.AddListener(OnWinClicked);

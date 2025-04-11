@@ -5,18 +5,18 @@ namespace Game
 {
     public class GameFlowController
     {
-        private readonly UIManager _uiManager;
+        private readonly UIScreenManager _uiScreenManager;
         private readonly PopupController _popupController;
         private readonly LevelService _levelService;
 
         private SceneState _currentState;
 
         public GameFlowController(
-            UIManager uiManager,
+            UIScreenManager uiScreenManager,
             PopupController popupController,
             LevelService levelService)
         {
-            _uiManager = uiManager;
+            _uiScreenManager = uiScreenManager;
             _currentState = SceneState.Menu;
             _popupController = popupController;
             _levelService = levelService;
@@ -25,13 +25,13 @@ namespace Game
         public void GoToMenu()
         {
             _currentState = SceneState.Menu;
-            _uiManager.ShowMainMenu();
+            _uiScreenManager.ShowMainMenu();
         }
         
         public void StartGame()
         {
             _currentState = SceneState.Game;
-            _uiManager.ShowGameUI();
+            _uiScreenManager.ShowGameUI();
         }
 
         public void ShowVictory(List<string> solvedWords)
@@ -42,14 +42,15 @@ namespace Game
         public void LoadNextLevel()
         {
             bool hasNext = _levelService.TryAdvanceLevel();
+            
             if (hasNext)
             {
-                _uiManager.ShowGameUI();
+                _uiScreenManager.ShowGameUI();
             }
             else
             {
                 Debug.Log("No more levels!");
-                GoToMenu(); // или остаёмся в победном окне
+                GoToMenu();
             }
         }
     }

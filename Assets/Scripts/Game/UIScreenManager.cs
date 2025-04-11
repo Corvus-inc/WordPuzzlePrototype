@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Game
 {
-    public class UIManager
+    public class UIScreenManager
     {
         private readonly DiContainer _container;
         
@@ -19,7 +19,7 @@ namespace Game
         
         private readonly Sprite _background;
 
-        public UIManager(
+        public UIScreenManager(
             DiContainer container,
             Transform uiRoot,
             GameObject mainMenuPrefab,

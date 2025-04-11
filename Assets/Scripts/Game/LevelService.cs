@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
 namespace Game
@@ -6,7 +7,7 @@ namespace Game
     public class LevelService
     {
         private List<LevelData> _levels;
-        private int _currentLevelIndex = 0;
+        private int _currentLevelIndex;
 
         public void SetLevels(List<LevelData> levels)
         {
@@ -32,26 +33,15 @@ namespace Game
                 return false;
             }
 
-            if (_currentLevelIndex < _levels.Count - 1)
-            {
-                _currentLevelIndex++;
-            }
-            else
-            {
-                Debug.Log("Reached last level, restarting from the beginning.");
-                _currentLevelIndex = 0;
-            }
+            if (TryMoveToNextLevel()) return true;
+            
+            Debug.Log("Reached last level, restarting from the beginning.");
+            _currentLevelIndex = 0;
 
             return true;
         }
-
-
-        public void ResetProgress()
-        {
-            _currentLevelIndex = 0;
-        }
-
-        public bool MoveToNextLevel()
+        
+        private bool TryMoveToNextLevel()
         {
             if (_currentLevelIndex + 1 < _levels.Count)
             {

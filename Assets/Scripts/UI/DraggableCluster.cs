@@ -45,14 +45,17 @@ namespace UI
                 if (!IsPointerInsideScrollRect(eventData))
                 {
                     _isOutside = true;
+                    
                     _rectTransform.SetParent(_dragParent, true);
+                    _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                    _rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
                 }
             }
             else
             {
                 if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_dragParent, eventData.position, eventData.pressEventCamera, out Vector2 localPos))
                 {
-                    _rectTransform.localPosition = localPos - _offset;
+                    _rectTransform.anchoredPosition = localPos - _offset;
                 }
             }
         }

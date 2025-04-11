@@ -60,7 +60,11 @@ namespace Core
             if (!await InitializeUnityServicesAsync())
                 return false;
 
-            return await WaitForFetchConfigsAsync();
+            while (! await WaitForFetchConfigsAsync())
+            {
+                await UniTask.Delay(FETCH_TIMEOUT);
+            }
+            return true;
         }
 
         private string GetJsonForKey(string configKey)

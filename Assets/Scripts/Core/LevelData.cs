@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Game
+namespace Core
 {
     [Serializable]
     public class LevelData
