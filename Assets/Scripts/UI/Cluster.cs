@@ -10,8 +10,11 @@ namespace UI
         [SerializeField] private GameObject clusterCellPrefab;
         [SerializeField] private Image foreground;
 
+        private string _symbols;
         public void InitCluster(char[] content, RectTransform dragParent, ScrollRect scrollRect)
         {
+            _symbols = new string(content);
+            
             foreach (var ch in content)
             {
                 var clusterCell = Instantiate(clusterCellPrefab, horizontalGroup);
@@ -53,6 +56,10 @@ namespace UI
             LayoutRebuilder.ForceRebuildLayoutImmediate(horizontalGroup);
         }
         
+        public string GetValue()
+        {
+            return _symbols;
+        }
         private Color GetRandomSoftColor()
         {
             float h = Random.value;

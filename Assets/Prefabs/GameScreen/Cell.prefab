@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6774478328303257023}
   - component: {fileID: 1807304494046577190}
   - component: {fileID: 954423985598196608}
+  - component: {fileID: 5634239798310376692}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -59,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.90447366, g: 0.9716981, b: 0.92319137, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -75,3 +76,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5634239798310376692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328533043923095675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2dc84abb1a439eb65d46d2419b6931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
