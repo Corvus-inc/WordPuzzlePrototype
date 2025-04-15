@@ -1,17 +1,17 @@
-using Core;
+using Core.Interfaces;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Game
+namespace UI.Screen
 {
-    public class UIScreenManager 
+    public class UIScreenManager : IUIScreenManager
     {
         private readonly DiContainer _container;
         
         private readonly Transform _uiRoot;
-        private readonly Image _mainBackground;
+        private readonly GameObject _mainBackground;
 
         private readonly GameObject _mainMenuPrefab;
         private readonly GameObject _gameUIPrefab;
@@ -26,7 +26,7 @@ namespace Game
             Transform uiRoot,
             GameObject mainMenuPrefab,
             GameObject gameUIPrefab,
-            Image mainBackground,
+            GameObject mainBackgroundPrefab,
             IResourceManager resourceManager)
         {
             _container = container;
@@ -35,7 +35,7 @@ namespace Game
             
             _mainMenuPrefab = mainMenuPrefab;
             _gameUIPrefab = gameUIPrefab;
-            _mainBackground = mainBackground;
+            _mainBackground = _container.InstantiatePrefab(mainBackgroundPrefab);
             _resourceManager = resourceManager;
         }
 
@@ -71,7 +71,7 @@ namespace Game
                     return;
                 }
                 
-                _mainBackground.sprite = sprite;
+                _mainBackground.GetComponentInChildren<Image>().sprite = sprite;
             }
             else
             {

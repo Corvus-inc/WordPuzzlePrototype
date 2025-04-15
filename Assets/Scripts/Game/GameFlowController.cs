@@ -1,42 +1,39 @@
 using System.Collections.Generic;
+using Core;
+using Core.Interfaces;
 using UnityEngine;
 
 namespace Game
 {
     public class GameFlowController
     {
-        private readonly UIScreenManager _uiScreenManager;
-        private readonly PopupController _popupController;
+        private readonly IUIScreenManager _uiScreenManager;
+        private readonly IUIPopupManager _uiPopupManager;
         private readonly LevelService _levelService;
 
-        private SceneState _currentState;
-
         public GameFlowController(
-            UIScreenManager uiScreenManager,
-            PopupController popupController,
+            IUIScreenManager uiScreenManager,
+            IUIPopupManager uiPopupManager,
             LevelService levelService)
         {
             _uiScreenManager = uiScreenManager;
-            _currentState = SceneState.Menu;
-            _popupController = popupController;
+            _uiPopupManager = uiPopupManager;
             _levelService = levelService;
         }
 
         public void GoToMenu()
         {
-            _currentState = SceneState.Menu;
             _uiScreenManager.ShowMainMenu();
         }
         
         public void StartGame()
         {
-            _currentState = SceneState.Game;
             _uiScreenManager.ShowGameUI();
         }
 
         public void ShowVictory(List<string> solvedWords)
         {
-            _popupController.ShowVictoryPopup(solvedWords);
+            _uiPopupManager.ShowVictoryPopup(solvedWords);
         }
 
         public void LoadNextLevel()
@@ -54,5 +51,4 @@ namespace Game
             }
         }
     }
-
 }

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using Core;
+using Core.Interfaces;
 using UnityEngine;
 using Zenject;
 
-namespace Game
+namespace UI.Popup
 {
-    public class PopupController
+    public class UIPopupManager : IUIPopupManager
     {
         private readonly DiContainer _container;
         private readonly Canvas _uiCanvas;
@@ -13,7 +13,7 @@ namespace Game
 
         private GameObject _settingsPopup;
 
-        public PopupController(DiContainer container, Canvas uiCanvas, IResourceManager resourceManager)
+        public UIPopupManager(DiContainer container, Canvas uiCanvas, IResourceManager resourceManager)
         {
             _container = container;
             _uiCanvas = uiCanvas;
@@ -34,7 +34,7 @@ namespace Game
             var instance = _container.InstantiatePrefab(prefab, _uiCanvas.transform);
             instance.SetActive(true);
 
-            if (instance.TryGetComponent(out IVictoryPopup victoryPopup))
+            if (instance.TryGetComponent(out VictoryPopupWindow victoryPopup))
             {
                 victoryPopup.SetWords(solvedWords);
             }

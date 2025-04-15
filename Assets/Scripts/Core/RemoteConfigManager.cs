@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace Core
 {
-    public struct userAttributes { }
-    public struct appAttributes { }
+    public struct UserAttributes { }
+    public struct AppAttributes { }
     
     public class RemoteConfigManager
     {
@@ -98,7 +98,7 @@ namespace Core
 
             try
             {
-                RemoteConfigService.Instance.FetchConfigs(new userAttributes(), new appAttributes());
+                RemoteConfigService.Instance.FetchConfigs(new UserAttributes(), new AppAttributes());
             }
             catch (Exception ex)
             {

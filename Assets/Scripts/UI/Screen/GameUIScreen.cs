@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using Core.Interfaces;
 using Cysharp.Threading.Tasks;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace UI
+namespace UI.Screen
 {
-    public class GameUIWindow : MonoBehaviour
+    public class GameUIScreen : MonoBehaviour
     {
         [Header("Containers")]
         [SerializeField] private Transform _cellsContainer; 
@@ -26,13 +27,13 @@ namespace UI
 
 
         private GameFlowController _gameFlowController;
-        private UIScreenManager _uiScreenManager;
+        private IUIScreenManager _uiScreenManager;
         private LevelData _level;
 
         [Inject]
         public void Construct(GameFlowController gameFlowController,
             LevelService levelService,
-            UIScreenManager uiScreenManager)
+            IUIScreenManager uiScreenManager)
         {
             _gameFlowController = gameFlowController;
             _uiScreenManager = uiScreenManager;
