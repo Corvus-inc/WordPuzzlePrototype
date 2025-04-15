@@ -4,6 +4,5 @@ namespace Game
     {
         Menu,
         Game,
-        Victory
     }
 }

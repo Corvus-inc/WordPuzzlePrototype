@@ -1,4 +1,3 @@
-using System;
 using Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +19,8 @@ namespace Game.Installers
 
         public override void InstallBindings()
         {
+            Container.Bind<IResourceManager>().To<AddressableResourceManager>().AsSingle();
+            
             Container.Bind<RemoteConfigManager>().AsSingle();
             Container.Bind<LevelListProvider>().AsSingle();
             Container.Bind<LevelService>().AsSingle();

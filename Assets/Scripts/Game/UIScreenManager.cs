@@ -1,10 +1,12 @@
+using Core;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Game
 {
-    public class UIScreenManager
+    public class UIScreenManager 
     {
         private readonly DiContainer _container;
         
@@ -17,14 +19,15 @@ namespace Game
         private GameObject _mainMenu;
         private GameObject _gameUI;
         
-        private readonly Sprite _background;
+        private readonly IResourceManager _resourceManager;
 
         public UIScreenManager(
             DiContainer container,
             Transform uiRoot,
             GameObject mainMenuPrefab,
             GameObject gameUIPrefab,
-            Image mainBackground)
+            Image mainBackground,
+            IResourceManager resourceManager)
         {
             _container = container;
             
@@ -33,13 +36,13 @@ namespace Game
             _mainMenuPrefab = mainMenuPrefab;
             _gameUIPrefab = gameUIPrefab;
             _mainBackground = mainBackground;
-            _background = mainBackground.sprite;
+            _resourceManager = resourceManager;
         }
 
         public void ShowMainMenu()
         {
             UnloadAll();
-            SetupBackground(_background);
+            SetupBackground(0);
             _mainMenu = _container.InstantiatePrefab(_mainMenuPrefab, _uiRoot);
         }
 
@@ -55,10 +58,19 @@ namespace Game
             if (_gameUI != null) Object.Destroy(_gameUI);
         }
         
-        public void SetupBackground(Sprite sprite)
+        public async UniTask SetupBackground(int spriteId)
         {
             if (_mainBackground != null)
             {
+                var spritePath = $"UI/Background/Back{spriteId}";
+                var sprite = await _resourceManager.LoadAsync<Sprite>(spritePath);
+                
+                if (sprite == null)
+                {
+                    Debug.LogError($"Failed to load sprite: {spritePath}");
+                    return;
+                }
+                
                 _mainBackground.sprite = sprite;
             }
             else

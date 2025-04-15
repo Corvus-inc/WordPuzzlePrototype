@@ -49,9 +49,8 @@ namespace UI
             {
                 CreateRows();
                 CreateClusterItems(_level.clusters);
-
-                var back = Resources.Load<Sprite>($"UI/Background/Back{_level.id}");
-                _uiScreenManager.SetupBackground(back);
+                
+                _uiScreenManager.SetupBackground(_level.id);
             }
 
             _winButton.onClick.AddListener(OnWinClicked);

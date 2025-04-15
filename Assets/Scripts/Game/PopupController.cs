@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Core;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 namespace Game
@@ -11,40 +9,38 @@ namespace Game
     {
         private readonly DiContainer _container;
         private readonly Canvas _uiCanvas;
-        
+        private readonly IResourceManager _resourceManager;
+
         private GameObject _settingsPopup;
 
-        public PopupController(DiContainer container, Canvas uiCanvas)
+        public PopupController(DiContainer container, Canvas uiCanvas, IResourceManager resourceManager)
         {
             _container = container;
             _uiCanvas = uiCanvas;
+            _resourceManager = resourceManager;
         }
 
         public async void ShowVictoryPopup(List<string> solvedWords)
         {
             const string popupKey = "UI/PopupVictoryWindow";
 
-            var handle = Addressables.LoadAssetAsync<GameObject>(popupKey);
-            await handle.Task;
-
-            if (handle.Status == AsyncOperationStatus.Succeeded)
+            var prefab = await _resourceManager.LoadAsync<GameObject>(popupKey);
+            if (prefab == null)
             {
-                var prefab = handle.Result;
-                var instance = _container.InstantiatePrefab(prefab, _uiCanvas.transform);
-                instance.SetActive(true);
+                Debug.LogError($"Failed to load popup: {popupKey}");
+                return;
+            }
+            
+            var instance = _container.InstantiatePrefab(prefab, _uiCanvas.transform);
+            instance.SetActive(true);
 
-                if (instance.TryGetComponent<IVictoryPopup>(out var victoryPopup))
-                {
-                    victoryPopup.SetWords(solvedWords);
-                }
-                else
-                {
-                    Debug.LogWarning("Victory popup does not implement IVictoryPopup.");
-                }
+            if (instance.TryGetComponent(out IVictoryPopup victoryPopup))
+            {
+                victoryPopup.SetWords(solvedWords);
             }
             else
             {
-                Debug.LogError($"Failed to load popup: {popupKey}");
+                Debug.LogWarning("Victory popup does not implement IVictoryPopup.");
             }
         }
 
@@ -57,22 +53,17 @@ namespace Game
             }
             
             const string popupKey = "UI/PopupSettingsWindow";
-
-            AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(popupKey);
-            await handle.Task;
-
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                var prefab = handle.Result;
-                var instance = _container.InstantiatePrefab(prefab, _uiCanvas.transform);
-                instance.SetActive(true);
-
-                _settingsPopup = instance;
-            }
-            else
+            
+            var prefab = await _resourceManager.LoadAsync<GameObject>(popupKey);
+            if (prefab == null)
             {
                 Debug.LogError($"[PopupController] Failed to load popup: {popupKey}");
+                return;
             }
+            
+            var instance = _container.InstantiatePrefab(prefab, _uiCanvas.transform);
+            instance.SetActive(true);
+            _settingsPopup = instance;
         }
     }
 }
