@@ -5,6 +5,7 @@ using Core.Interfaces;
 using Cysharp.Threading.Tasks;
 using Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -13,17 +14,17 @@ namespace UI.Screen
     public class GameUIScreen : MonoBehaviour
     {
         [Header("Containers")]
-        [SerializeField] private Transform _cellsContainer; 
-        [SerializeField] private Transform _clustersContainer; 
-
-        [Header("Prefabs")]
-        [SerializeField] private GameObject _cellPrefab;  
-        [SerializeField] private GameObject _rowPrefab;  
-        [SerializeField] private GameObject _clusterPrefab;
+        [SerializeField] private Transform cellsContainer;
+        [SerializeField] private Transform clustersContainer;
         
-        [Header("Anything")]
-        [SerializeField] private ScrollRect _scrollRect;
-        [SerializeField] private Button _winButton;
+        [Header("Prefabs")]
+        [SerializeField] private GameObject cellPrefab;
+        [SerializeField] private GameObject rowPrefab;
+        [SerializeField] private GameObject clusterPrefab;
+        
+        [Header("Other")]
+        [SerializeField] private ScrollRect scrollRect;
+        [SerializeField] private Button winButton;
 
 
         private GameFlowController _gameFlowController;
@@ -43,8 +44,8 @@ namespace UI.Screen
 
         private void Start()
         {
-            ClearContainer(_cellsContainer);
-            ClearContainer(_clustersContainer);
+            ClearContainer(cellsContainer);
+            ClearContainer(clustersContainer);
 
             if (_level != null)
             {
@@ -54,7 +55,7 @@ namespace UI.Screen
                 _uiScreenManager.SetupBackground(_level.id);
             }
 
-            _winButton.onClick.AddListener(OnWinClicked);
+            winButton.onClick.AddListener(OnWinClicked);
         }
 
         private void ClearContainer(Transform container)
@@ -69,7 +70,7 @@ namespace UI.Screen
         {
             foreach (var word in _level.words)
             {
-                var row = Instantiate(_rowPrefab, _cellsContainer);
+                var row = Instantiate(rowPrefab, cellsContainer);
                 row.SetActive(true);
             }
         }
@@ -80,7 +81,7 @@ namespace UI.Screen
 
             foreach (var cluster in clusters)
             {
-                GameObject clusterGO = Instantiate(_clusterPrefab, _clustersContainer);
+                GameObject clusterGO = Instantiate(clusterPrefab, clustersContainer);
                 clusterGO.SetActive(true);
 
                 var clusterScaler = clusterGO.GetComponentInChildren<Cluster>();
@@ -88,8 +89,8 @@ namespace UI.Screen
                 {
                     clusterScaler.InitCluster(
                         cluster.ToCharArray(),
-                        _clustersContainer.parent as RectTransform,
-                        _scrollRect);
+                        clustersContainer.parent as RectTransform,
+                        scrollRect);
                 }
             }
         }
@@ -98,8 +99,8 @@ namespace UI.Screen
         {
             Debug.Log("=== OnWinClicked (build words per row) ===");
 
-            var rowPanels = _cellsContainer.GetComponentsInChildren<RowPanel>();
-            var allClusters = _clustersContainer.parent.GetComponentsInChildren<Cluster>();
+            var rowPanels = cellsContainer.GetComponentsInChildren<RowPanel>();
+            var allClusters = clustersContainer.parent.GetComponentsInChildren<Cluster>();
 
             List<string> constructedWords = new List<string>();
 
@@ -156,7 +157,7 @@ namespace UI.Screen
                 _gameFlowController.ShowVictory(constructedWords);
             }else
             {
-                FlashButtonRed(_winButton, 3);
+                FlashButtonRed(winButton, 3);
             }
         }
         

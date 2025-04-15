@@ -301,13 +301,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a70b28c4c0c4a148a4868f840e296a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellsContainer: {fileID: 8231554822104352982}
-  _clustersContainer: {fileID: 5601046015099821604}
-  _cellPrefab: {fileID: 1328533043923095675, guid: 4d8f835c07fe9af40ab8df0e218610bf, type: 3}
-  _rowPrefab: {fileID: 3929187986150142730, guid: c906453919e713f47a415892cf4e2e42, type: 3}
-  _clusterPrefab: {fileID: 6642010890063158916, guid: 088f4df420fd33b41b334977645fff00, type: 3}
-  _scrollRect: {fileID: 5217886585147448415}
-  _winButton: {fileID: 5565775022367831721}
+  cellsContainer: {fileID: 8231554822104352982}
+  clustersContainer: {fileID: 5601046015099821604}
+  cellPrefab: {fileID: 1328533043923095675, guid: 4d8f835c07fe9af40ab8df0e218610bf, type: 3}
+  rowPrefab: {fileID: 3929187986150142730, guid: c906453919e713f47a415892cf4e2e42, type: 3}
+  clusterPrefab: {fileID: 6642010890063158916, guid: 088f4df420fd33b41b334977645fff00, type: 3}
+  scrollRect: {fileID: 5217886585147448415}
+  winButton: {fileID: 5565775022367831721}
 --- !u!1 &6589875592673940537
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class RowPanel : MonoBehaviour
+namespace UI
 {
+    public class RowPanel : MonoBehaviour
+    {
+    }
 }

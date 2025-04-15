@@ -520,7 +520,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2868346420842617990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,10 +550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255a0337677021446bcb72e7ede4a273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wordListContainer: {fileID: 7539422301862177381}
-  _wordItemPrefab: {fileID: 6987950101718161922, guid: 5760f8cf68d23fd469c8f7304d8e2a8a, type: 3}
-  _mainMenuButton: {fileID: 5233847017194717443}
-  _nextLevelButton: {fileID: 7544574317384753218}
+  wordListContainer: {fileID: 7539422301862177381}
+  wordItemPrefab: {fileID: 6987950101718161922, guid: 5760f8cf68d23fd469c8f7304d8e2a8a, type: 3}
+  mainMenuButton: {fileID: 5233847017194717443}
+  nextLevelButton: {fileID: 7544574317384753218}
 --- !u!1 &8059796608360444340
 GameObject:
   m_ObjectHideFlags: 0

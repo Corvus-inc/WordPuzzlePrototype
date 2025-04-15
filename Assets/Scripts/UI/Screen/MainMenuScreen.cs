@@ -1,6 +1,7 @@
 using Core.Interfaces;
 using Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -8,8 +9,8 @@ namespace UI.Screen
 {
     public class MainMenuScreen : MonoBehaviour
     {
-        [SerializeField] private Button _playButton;
-        [SerializeField] private Button _settingsButton;
+        [SerializeField] private Button playButton;
+        [SerializeField] private Button settingsButton;
 
         private LevelService _levelService;
         private GameFlowController _gameFlowController;
@@ -27,8 +28,8 @@ namespace UI.Screen
 
         private void Start()
         {
-            _playButton.onClick.AddListener(OnPlayClicked);
-            _settingsButton.onClick.AddListener(OnSettingsClicked);
+            playButton.onClick.AddListener(OnPlayClicked);
+            settingsButton.onClick.AddListener(OnSettingsClicked);
         }
 
         private void OnPlayClicked()
