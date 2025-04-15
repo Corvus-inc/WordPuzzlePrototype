@@ -38,10 +38,6 @@ namespace UI.Popup
             {
                 victoryPopup.SetWords(solvedWords);
             }
-            else
-            {
-                Debug.LogWarning("Victory popup does not implement IVictoryPopup.");
-            }
         }
 
         public async void ShowSettingsPopup()

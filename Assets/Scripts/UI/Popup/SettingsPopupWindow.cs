@@ -8,6 +8,7 @@ namespace UI.Popup
     public class SettingsPopupWindow : MonoBehaviour
     {
         [SerializeField] private Toggle musicToggle;
+        [SerializeField] private Button closeButton;
         
         private IMusicManager _musicManager;
         
@@ -18,6 +19,12 @@ namespace UI.Popup
             
             musicToggle.isOn = musicManager.IsMusicEnabled;
             musicToggle.onValueChanged.AddListener(OnMusicToggleChanged);
+            closeButton.onClick.AddListener(OnCloseButtonClicked);
+        }
+
+        private void OnCloseButtonClicked()
+        {
+            Destroy(gameObject);
         }
 
         private void OnMusicToggleChanged(bool arg0)

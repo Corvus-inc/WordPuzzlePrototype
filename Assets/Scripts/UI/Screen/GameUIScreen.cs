@@ -155,7 +155,8 @@ namespace UI.Screen
             if (CheckWin(constructedWords, _level.words))
             {
                 _gameFlowController.ShowVictory(constructedWords);
-            }else
+            }
+            else
             {
                 FlashButtonRed(winButton, 3);
             }
