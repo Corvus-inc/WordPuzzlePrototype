@@ -24,6 +24,9 @@ namespace Game.Installers
             
             Container.Bind<GameFlowController>().AsSingle();
             Container.BindInterfacesTo<GameInitializer>().AsSingle();
+            
+            Container.Bind<IMusicManager>().To<MusicManager>().AsSingle()
+                .WithArguments(audioSource);
         }
     }
 }
