@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace Core.Interfaces
+namespace UI.Screen
 {
     public interface IUIScreenManager
     {

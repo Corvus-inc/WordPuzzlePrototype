@@ -1,5 +1,5 @@
 using Core;
-using Core.Interfaces;
+using Game.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +16,8 @@ namespace Game.Installers
 
         public override void InstallBindings()
         {
+            DeclareSignalBus();
+
             Container.Bind<IResourceManager>().To<AddressableResourceManager>().AsSingle();
             
             Container.Bind<RemoteConfigManager>().AsSingle();
@@ -27,6 +29,15 @@ namespace Game.Installers
             
             Container.Bind<IMusicManager>().To<MusicManager>().AsSingle()
                 .WithArguments(audioSource);
+        }
+
+        private void DeclareSignalBus()
+        {
+            SignalBusInstaller.Install(Container);
+            
+            Container.DeclareSignal<ShowMainMenuSignal>();
+            Container.DeclareSignal<ShowGameUISignal>();
+            Container.DeclareSignal<ShowVictorySignal>();
         }
     }
 }

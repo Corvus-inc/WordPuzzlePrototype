@@ -1,4 +1,4 @@
-using Core.Interfaces;
+using Core;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,7 +42,7 @@ namespace UI.Screen
         public void ShowMainMenu()
         {
             UnloadAll();
-            SetupBackground(0);
+            SetupBackground(0).Forget();
             _mainMenu = _container.InstantiatePrefab(_mainMenuPrefab, _uiRoot);
         }
 

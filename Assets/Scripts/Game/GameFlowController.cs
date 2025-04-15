@@ -1,53 +1,47 @@
 using System.Collections.Generic;
-using Core;
-using Core.Interfaces;
+using Game.Signals;
 using UnityEngine;
+using Zenject;
 
 namespace Game
 {
     public class GameFlowController
     {
-        private readonly IUIScreenManager _uiScreenManager;
-        private readonly IUIPopupManager _uiPopupManager;
+        private readonly SignalBus _signalBus;
         private readonly LevelService _levelService;
 
-        public GameFlowController(
-            IUIScreenManager uiScreenManager,
-            IUIPopupManager uiPopupManager,
-            LevelService levelService)
+        public GameFlowController(SignalBus signalBus, LevelService levelService)
         {
-            _uiScreenManager = uiScreenManager;
-            _uiPopupManager = uiPopupManager;
+            _signalBus = signalBus;
             _levelService = levelService;
         }
 
         public void GoToMenu()
         {
-            _uiScreenManager.ShowMainMenu();
+            _signalBus.Fire<ShowMainMenuSignal>();
         }
-        
+
         public void StartGame()
         {
-            _uiScreenManager.ShowGameUI();
+            _signalBus.Fire<ShowGameUISignal>();
         }
 
         public void ShowVictory(List<string> solvedWords)
         {
-            _uiPopupManager.ShowVictoryPopup(solvedWords);
+            _signalBus.Fire(new ShowVictorySignal { Words = solvedWords });
         }
 
         public void LoadNextLevel()
         {
             bool hasNext = _levelService.TryAdvanceLevel();
-            
             if (hasNext)
             {
-                _uiScreenManager.ShowGameUI();
+                _signalBus.Fire<ShowGameUISignal>();
             }
             else
             {
                 Debug.Log("No more levels!");
-                GoToMenu();
+                _signalBus.Fire<ShowMainMenuSignal>();
             }
         }
     }

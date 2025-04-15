@@ -1,7 +1,6 @@
-using Core.Interfaces;
 using Game;
+using UI.Popup;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 

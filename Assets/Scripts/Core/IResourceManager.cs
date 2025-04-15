@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Core.Interfaces
+namespace Core
 {
     public interface IResourceManager 
     {

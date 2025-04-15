@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core;
-using Core.Interfaces;
 using Cysharp.Threading.Tasks;
 using Game;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -158,7 +156,7 @@ namespace UI.Screen
             }
             else
             {
-                FlashButtonRed(winButton, 3);
+                FlashButtonRed(winButton, 3).Forget();
             }
         }
         
